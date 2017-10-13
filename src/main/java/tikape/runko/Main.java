@@ -6,7 +6,7 @@ import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
 import tikape.runko.database.OpiskelijaDao;
-
+//On tää saatana työmaa t:petteri
 public class Main {
 
     public static void main(String[] args) throws Exception {
