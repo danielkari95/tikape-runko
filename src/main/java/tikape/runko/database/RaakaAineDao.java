@@ -24,7 +24,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
     @Override
     public RaakaAine findOne(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM RaakaAine WHERE id = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT RaakaAine.nimi FROM RaakaAine WHERE id = ?");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -49,7 +49,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
     public List<RaakaAine> findAll() throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM RaakaAine");
+        PreparedStatement stmt = connection.prepareStatement("SELECT RaakaAine.nimi FROM RaakaAine");
 
         ResultSet rs = stmt.executeQuery();
         List<RaakaAine> annokset = new ArrayList<>();
