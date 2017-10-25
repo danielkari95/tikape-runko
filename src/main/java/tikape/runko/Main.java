@@ -32,6 +32,12 @@ public class Main {
                     + "<input type=\"submit\" value=\"Lisää\"/>\n"
                     + "</form>";
         });
+        
+        post("/uusiraakaaine", (req, res) -> {
+            String raakaaine = req.queryParams("raaka-aineen nimi");
+            return "Kerrotaan siitä tiedon lähettäjälle: " + raakaaine;
+        });
+
        
         get("/uusismoothie", (req, res) -> {
             return "<form method=\"POST\" action=\"/uusismoothie\">\n"
