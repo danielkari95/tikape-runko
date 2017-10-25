@@ -26,7 +26,7 @@ public class Main {
         }, new ThymeleafTemplateEngine());
         
         get("/uusiraakaaine", (req, res) -> {
-            return "<form method=\"POST\" action=\"/smoothiet\">\n"
+            return "<form method=\"POST\" action=\"/uusiraakaaine\">\n"
                     + "Raaka-aineen nimi:<br/>\n"
                     + "<input type=\"text\" name=\"raaka-aineen nimi\"/><br/>\n"
                     + "<input type=\"submit\" value=\"Lisää\"/>\n"
@@ -34,7 +34,7 @@ public class Main {
         });
        
         get("/uusismoothie", (req, res) -> {
-            return "<form method=\"POST\" action=\"/smoothiet\">\n"
+            return "<form method=\"POST\" action=\"/uusismoothie\">\n"
                     + "Smoothien nimi:<br/>\n"
                     + "<input type=\"text\" name=\"smoothien nimi\"/><br/>\n"
                     + "<input type=\"submit\" value=\"Lisää\"/>\n"
@@ -42,7 +42,7 @@ public class Main {
         });
         
         get("/uusismoothie", (req, res) -> {
-            return "<form method=\"POST\" action=\"/smoothiet\">\n"
+            return "<form method=\"POST\" action=\"/uusismoothie\">\n"
                     + "Smoothien nimi:<br/>\n"
                     + "<input type=\"text\" name=\"smoothien nimi\"/><br/>\n"
                     + "Järjestys:<br/>\n"
