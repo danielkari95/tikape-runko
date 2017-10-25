@@ -78,5 +78,22 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
         stmt.close();
         connection.close();
     }
+    
+    public List<RaakaAine> findRaakaAineetForSmoothie(Integer smoothieId) throws SQLException {
+        String query = "SELECT * FROM AnnosRaakaAine, Annos WHERE AnnosRaakaAine.annos_id =  ";
+        List<RaakaAine> raakaAineet = new ArrayList<>();
+
+    try (Connection conn = database.getConnection()) {
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, smoothieId);
+        ResultSet result = stmt.executeQuery();
+
+        while (result.next()) {
+            raakaAineet.add(new RaakaAine(result.getInt("id"), result.getString("nimi")));
+        }
+    }
+
+    return raakaAineet;
+}
 
 }
