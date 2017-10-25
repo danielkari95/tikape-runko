@@ -25,11 +25,12 @@ public class Main {
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
         
-        get("/smoothie/:id", (req, res) -> {
+        get("/smoothie/id", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("annokset", "tervehdys");
-
-            return new ModelAndView(map, "smoothie");
+            Integer id = Integer.parseInt(req.params("id"));
+            map.put("annokset", annosDao.findOne(id));
+            map.put("raaka-aineet", raakaAineDao.findRaakaAineetForSmoothie(id));
+            return new ModelAndView(map, "annokset");
         }, new ThymeleafTemplateEngine());
         
         get("/uusiraakaaine", (req, res) -> {

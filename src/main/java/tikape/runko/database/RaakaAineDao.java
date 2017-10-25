@@ -80,20 +80,20 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
     }
     
     public List<RaakaAine> findRaakaAineetForSmoothie(Integer smoothieId) throws SQLException {
-        String query = "SELECT * FROM AnnosRaakaAine, Annos WHERE AnnosRaakaAine.annos_id =  ";
+        String query = "SELECT RaakaAine.id, RaakaAine.nimi FROM AnnosRaakaAine, Annos, RaakaAine WHERE AnnosRaakaAine.annos_id = Annos.id AND AnnosRaakaAine.raaka_aine_id = RaakaAine.id AND Annos.id = ?";
         List<RaakaAine> raakaAineet = new ArrayList<>();
 
-    try (Connection conn = database.getConnection()) {
-        PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1, smoothieId);
-        ResultSet result = stmt.executeQuery();
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, smoothieId);
+            ResultSet result = stmt.executeQuery();
 
-        while (result.next()) {
-            raakaAineet.add(new RaakaAine(result.getInt("id"), result.getString("nimi")));
+            while (result.next()) {
+                raakaAineet.add(new RaakaAine(result.getInt("id"), result.getString("nimi")));
+            }
         }
-    }
 
-    return raakaAineet;
-}
+        return raakaAineet;
+    }
 
 }
