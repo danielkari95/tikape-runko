@@ -30,7 +30,7 @@ public class Main {
             return new ModelAndView(map, "opiskelijat");
         }, new ThymeleafTemplateEngine());
         
-        get("/ainekset", (req, res) -> {
+        get("/uusiraakaaine", (req, res) -> {
             return "<form method=\"POST\" action=\"/smoothiet\">\n"
                     + "Raaka-aineen nimi:<br/>\n"
                     + "<input type=\"text\" name=\"raaka-aineen nimi\"/><br/>\n"
@@ -38,7 +38,7 @@ public class Main {
                     + "</form>";
         });
        
-        get("/smoothiet", (req, res) -> {
+        get("/uusismoothie", (req, res) -> {
             return "<form method=\"POST\" action=\"/smoothiet\">\n"
                     + "Smoothien nimi:<br/>\n"
                     + "<input type=\"text\" name=\"smoothien nimi\"/><br/>\n"
@@ -46,7 +46,7 @@ public class Main {
                     + "</form>";
         });
         
-        get("/smoothiet", (req, res) -> {
+        get("/uusismoothie", (req, res) -> {
             return "<form method=\"POST\" action=\"/smoothiet\">\n"
                     + "Smoothien nimi:<br/>\n"
                     + "<input type=\"text\" name=\"smoothien nimi\"/><br/>\n"
@@ -60,7 +60,7 @@ public class Main {
                     + "</form>";
         });
         
-        post("/smoothiet", (req, res) -> {
+        post("/uusismoothie", (req, res) -> {
             String nimi = req.queryParams("smoothien nimi");
             return "Kerrotaan siitä tiedon lähettäjälle: " + nimi;
         });
