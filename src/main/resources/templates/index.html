@@ -11,7 +11,7 @@
         
         <ul>
             <li th:each="annos: ${annokset}">
-                <span th:text="${annos.nimi}">smoothien nimi</span> <a th:href="${'/uusiraakaaine/' + annos.id}">linkki</a>
+                <span th:text="${annos.nimi}">smoothien nimi</span> <a th:href="${'/smoothie/' + annos.id}">linkki</a>
             </li>
         </ul>
         

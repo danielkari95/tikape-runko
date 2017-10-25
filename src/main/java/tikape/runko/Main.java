@@ -25,6 +25,13 @@ public class Main {
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
         
+        get("/smoothie/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            map.put("annokset", "tervehdys");
+
+            return new ModelAndView(map, "smoothie");
+        }, new ThymeleafTemplateEngine());
+        
         get("/uusiraakaaine", (req, res) -> {
             return "<form method=\"POST\" action=\"/uusiraakaaine\">\n"
                     + "Raaka-aineen nimi:<br/>\n"
