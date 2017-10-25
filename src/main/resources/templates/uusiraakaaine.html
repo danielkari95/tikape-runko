@@ -1,24 +1,27 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Raaka-aineet</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8"/>
+
     </head>
     <body>
         <h1>Raaka-aineet</h1>
-        
+
+
         <ul>
-            
+            <li th:each="annos: ${annokset}">
+                <span th:text="${annos.nimi}">smoothien nimi</span>
+            </li>
         </ul>
-        
+
         <h3>Lisää uusi raaka-aine</h3>
-        
+
         <ul>
             <li><a href="/index">Smoothielistaukseen</a></li>
         </ul>

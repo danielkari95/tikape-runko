@@ -33,6 +33,14 @@ public class Main {
         }, new ThymeleafTemplateEngine());
         
         get("/uusiraakaaine", (req, res) -> {
+            HashMap map = new HashMap<>();
+            map.put("annokset", raakaAineDao.findAll());
+
+            return new ModelAndView(map, "uusiraakaaine");
+        }, new ThymeleafTemplateEngine());
+        
+        
+        get("/uusiraakaaine", (req, res) -> {
             return "<form method=\"POST\" action=\"/uusiraakaaine\">\n"
                     + "Raaka-aineen nimi:<br/>\n"
                     + "<input type=\"text\" name=\"raaka-aineen nimi\"/><br/>\n"
