@@ -35,4 +35,10 @@ public class Database {
         }
     }
 
+    private List<String> sqliteLauseet() {
+        ArrayList<String> lista = new ArrayList<>();
+
+        // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
+        return lista;
+    }
 }
