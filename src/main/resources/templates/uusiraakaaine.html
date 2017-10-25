@@ -13,17 +13,22 @@ and open the template in the editor.
     <body>
         <h1>Raaka-aineet</h1>
 
-
         <ul>
             <li th:each="annos: ${annokset}">
                 <span th:text="${annos.nimi}">smoothien nimi</span>
             </li>
         </ul>
 
-        <h3>Lisää uusi raaka-aine</h3>
+        <p><b>Lisää uusi raaka-aine</b></p>
 
+        <form method= "POST" action="/uusiraakaaine">
+                Raaka-aineen nimi:<br/>
+                <input type="text" name="raaka-aineen nimi"/><br/>
+                <input type="submit" value="Lisää"/>
+                </form>
+        
         <ul>
-            <li><a href="/index">Smoothielistaukseen</a></li>
+            <li><a href="/">Smoothielistaukseen</a></li>
         </ul>
     </body>
 </html>
