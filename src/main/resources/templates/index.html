@@ -7,16 +7,11 @@
     </head>
 
     <body>
-        <h1>Heippa vaan!</h1>
-
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
-
-        <p><a href="/opiskelijat">Tästä opiskelijalistaukseen.</a></p>
-        
         <h2>Smoothielista</h2>
+        
         <ul>
-            <li th:each="opiskelija: ${opiskelijat}">
-                <span th:text="${opiskelija.nimi}">opiskelijan nimi</span> <a th:href="${'/opiskelijat/' + opiskelija.id}">linkki</a>
+            <li th:each="annos: ${annokset}">
+                <span th:text="${annos.nimi}">smoothien nimi</span> <a th:href="${'/uusiraakaaine/' + annos.id}">linkki</a>
             </li>
         </ul>
         
@@ -25,6 +20,5 @@
             <li><a href="/uusiraakaaine">Tarkastele ja lisää aineksia</a></li>
         </ul>
         
-
     </body>
 </html>
