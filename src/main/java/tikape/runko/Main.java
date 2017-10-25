@@ -5,29 +5,24 @@ import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
-import tikape.runko.database.OpiskelijaDao;
+import tikape.runko.database.AnnosDao;
+import tikape.runko.database.RaakaAineDao;
 //On tää saatana työmaa t:petteri
 //Lomakkeenlukemisjutut lisätty
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Database database = new Database("jdbc:sqlite:opiskelijat.db");
+        Database database = new Database("jdbc:sqlite:smoothie.db");
         database.init();
 
-        OpiskelijaDao opiskelijaDao = new OpiskelijaDao(database);
+        AnnosDao annosDao = new AnnosDao(database);
+        RaakaAineDao raakaAineDao = new RaakaAineDao(database);
 
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("viesti", "tervehdys");
 
             return new ModelAndView(map, "index");
-        }, new ThymeleafTemplateEngine());
-
-        get("/opiskelijat", (req, res) -> {
-            HashMap map = new HashMap<>();
-            map.put("opiskelijat", opiskelijaDao.findAll());
-
-            return new ModelAndView(map, "opiskelijat");
         }, new ThymeleafTemplateEngine());
         
         get("/uusiraakaaine", (req, res) -> {
@@ -65,11 +60,5 @@ public class Main {
             return "Kerrotaan siitä tiedon lähettäjälle: " + nimi;
         });
 
-        get("/opiskelijat/:id", (req, res) -> {
-            HashMap map = new HashMap<>();
-            map.put("opiskelija", opiskelijaDao.findOne(Integer.parseInt(req.params("id"))));
-
-            return new ModelAndView(map, "opiskelija");
-        }, new ThymeleafTemplateEngine());
     }
 }
