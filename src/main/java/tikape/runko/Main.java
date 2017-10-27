@@ -1,5 +1,6 @@
 package tikape.runko;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import spark.ModelAndView;
 import static spark.Spark.*;
@@ -7,6 +8,7 @@ import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
 import tikape.runko.database.AnnosDao;
 import tikape.runko.database.RaakaAineDao;
+import tikape.runko.domain.RaakaAine;
 //On tää saatana työmaa t:petteri
 //Lomakkeenlukemisjutut lisätty
 public class Main {
@@ -25,12 +27,12 @@ public class Main {
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
         
-        get("/smoothie/id", (req, res) -> {
+        get("/smoothie/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             Integer id = Integer.parseInt(req.params("id"));
-            map.put("annokset", annosDao.findOne(id));
-            map.put("raaka-aineet", raakaAineDao.findRaakaAineetForSmoothie(id));
-            return new ModelAndView(map, "annokset");
+            map.put("annos", annosDao.findOne(id));
+            map.put("raakaAineet", raakaAineDao.findRaakaAineetForSmoothie(id));
+            return new ModelAndView(map, "smoothie");
         }, new ThymeleafTemplateEngine());
         
         get("/uusiraakaaine", (req, res) -> {

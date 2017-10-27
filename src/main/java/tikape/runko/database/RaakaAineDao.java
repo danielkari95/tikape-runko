@@ -47,7 +47,6 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
 
     @Override
     public List<RaakaAine> findAll() throws SQLException {
-
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM RaakaAine");
 

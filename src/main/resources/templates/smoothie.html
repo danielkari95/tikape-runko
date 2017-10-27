@@ -1,16 +1,26 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
     <head>
         <title>Otsikko</title>
         <meta charset="utf-8" />
     </head>
     <body>
-        <h1>moikka</h1>
-    </body>
+    <h1 th:text="${annos.nimi}">nimi</h1>
+    <h2>Raaka.aineet</h2>
+    
+    <ul>
+      <li th:each="raakaAine : ${raakaAineet}">
+        <span th:text="${raakaAine.nimi}">Raaka-aine</span>
+      </li>
+    </ul>
+
+
+  </body>
 </html>
 
