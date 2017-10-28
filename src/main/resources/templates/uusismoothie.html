@@ -4,16 +4,18 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Smoothiet</title>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"/>
     </head>
     
     <body>
+        <h1>Smoothiet</h1>
         <ul>
-            <li>Aurinkolasit (poista)</li>
-            <li>Mustikkaplorays (poista)</li>
+            <li th:each="annos: ${annokset}">
+                <a th:href="${'/smoothie/' + annos.id}"><span th:text="${annos.nimi}">smoothien nimi</span></a>
+            </li>
         </ul>
         <p><b>Lisää uusi</b></p>
         <p>Smoothien nimi:</p>
