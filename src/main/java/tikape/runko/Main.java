@@ -66,12 +66,7 @@ public class Main {
             return new ModelAndView(map, "uusismoothie");
         }, new ThymeleafTemplateEngine());
         
-        get("/uusismoothie", (req, res) -> {
-            HashMap map = new HashMap<>();
-            
-
-            return new ModelAndView(map, "uusismoothie");
-        }, new ThymeleafTemplateEngine());
+        
         
 //        get("/uusiraakaaine", (req, res) -> {
 //            return "<form method=\"POST\" action=\"/uusiraakaaine\">\n"
