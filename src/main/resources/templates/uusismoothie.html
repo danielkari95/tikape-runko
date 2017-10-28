@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>Smoothiet</title>
         <meta charset="UTF-8"/>
     </head>
-    
+
     <body>
         <h1>Smoothiet</h1>
         <ul>
@@ -18,6 +18,20 @@ and open the template in the editor.
             </li>
         </ul>
         <p><b>Lisää uusi</b></p>
+
+        <form method= "POST" action="/uusiraakaaine">
+            Smoothien nimi:<br/>
+            <input type="text" name="smoothieNimi"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
+
+        <p><b>Lisää raaka-aineita</b></p>
+        <select name="raaka-aineet">
+            <option th:each="raakaaineet: ${raakaaine}" th:value="${raakaaineet.id}" th:text="${raakaaineet.nimi}">
+                raakaaineet
+            </option>
+        </select>
+
         <p>Smoothien nimi:</p>
     </body>
 </html>

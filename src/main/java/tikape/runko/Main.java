@@ -57,15 +57,18 @@ public class Main {
             return new ModelAndView(map, "uusiraakaaine");
         }, new ThymeleafTemplateEngine());
         
-//        get("/uusismoothie", (req, res) -> {
-//            HashMap map = new HashMap<>();
-//            
-//            return new ModelAndView(map, "uusismoothie");
-//        }, new ThymeleafTemplateEngine());
         
         get("/uusismoothie", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("annokset", annosDao.findAll());
+            map.put("raakaaine", raakaAineDao.findAll());
+
+            return new ModelAndView(map, "uusismoothie");
+        }, new ThymeleafTemplateEngine());
+        
+        get("/uusismoothie", (req, res) -> {
+            HashMap map = new HashMap<>();
+            
 
             return new ModelAndView(map, "uusismoothie");
         }, new ThymeleafTemplateEngine());
