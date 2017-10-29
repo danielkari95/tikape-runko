@@ -3,6 +3,7 @@ package tikape.runko;
 import java.util.ArrayList;
 import java.util.HashMap;
 import spark.ModelAndView;
+import spark.Spark;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
@@ -42,47 +43,71 @@ public class Main {
             return new ModelAndView(map, "uusiraakaaine");
         }, new ThymeleafTemplateEngine());
         
-        
-        get("/uusiraakaaine", (req, res) -> {
-            return "<form method=\"POST\" action=\"/uusiraakaaine\">\n"
-                    + "Raaka-aineen nimi:<br/>\n"
-                    + "<input type=\"text\" name=\"raaka-aineen nimi\"/><br/>\n"
-                    + "<input type=\"submit\" value=\"Lisää\"/>\n"
-                    + "</form>";
+        Spark.post("/uusiraakaaine", (req, res) -> {
+            String nimi = req.queryParams("nimi");
+            raakaAineDao.lisaaRaakaAine(nimi);
+            res.redirect("/uusiraakaaine");
+            return "";
         });
         
-        post("/uusiraakaaine", (req, res) -> {
-            String raakaaine = req.queryParams("raaka-aineen nimi");
-            return "Kerrotaan siitä tiedon lähettäjälle: " + raakaaine;
-        });
+        Spark.get("/uusiraakaaine/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            raakaAineDao.delete(Integer.parseInt(req.params("id")));
+            res.redirect("/uusiraakaaine");
+            return new ModelAndView(map, "uusiraakaaine");
+        }, new ThymeleafTemplateEngine());
+        
+        
+        get("/uusismoothie", (req, res) -> {
+            HashMap map = new HashMap<>();
+            map.put("annokset", annosDao.findAll());
+            map.put("raakaaine", raakaAineDao.findAll());
 
-       
-        get("/uusismoothie", (req, res) -> {
-            return "<form method=\"POST\" action=\"/uusismoothie\">\n"
-                    + "Smoothien nimi:<br/>\n"
-                    + "<input type=\"text\" name=\"smoothien nimi\"/><br/>\n"
-                    + "<input type=\"submit\" value=\"Lisää\"/>\n"
-                    + "</form>";
-        });
+            return new ModelAndView(map, "uusismoothie");
+        }, new ThymeleafTemplateEngine());
         
-        get("/uusismoothie", (req, res) -> {
-            return "<form method=\"POST\" action=\"/uusismoothie\">\n"
-                    + "Smoothien nimi:<br/>\n"
-                    + "<input type=\"text\" name=\"smoothien nimi\"/><br/>\n"
-                    + "Järjestys:<br/>\n"
-                    + "<input type=\"text\" name=\"raaka-aine\"/><br/>\n"
-                    + "Määrä:<br/>\n"
-                    + "<input type=\"number\" name=\"maara\"/><br/>\n"
-                    + "Ohje:<br/>\n"
-                    + "<input type=\"text\" name=\"ohje\"/><br/>\n"
-                    + "<input type=\"submit\" value=\"Lisää\"/>\n"
-                    + "</form>";
-        });
         
-        post("/uusismoothie", (req, res) -> {
-            String nimi = req.queryParams("smoothien nimi");
-            return "Kerrotaan siitä tiedon lähettäjälle: " + nimi;
-        });
+        
+//        get("/uusiraakaaine", (req, res) -> {
+//            return "<form method=\"POST\" action=\"/uusiraakaaine\">\n"
+//                    + "Raaka-aineen nimi:<br/>\n"
+//                    + "<input type=\"text\" name=\"raaka-aineen nimi\"/><br/>\n"
+//                    + "<input type=\"submit\" value=\"Lisää\"/>\n"
+//                    + "</form>";
+//        });
+//        
+//        post("/uusiraakaaine", (req, res) -> {
+//            String raakaaine = req.queryParams("raaka-aineen nimi");
+//            return "Kerrotaan siitä tiedon lähettäjälle: " + raakaaine;
+//        });
+//
+//       
+//        get("/uusismoothie", (req, res) -> {
+//            return "<form method=\"POST\" action=\"/uusismoothie\">\n"
+//                    + "Smoothien nimi:<br/>\n"
+//                    + "<input type=\"text\" name=\"smoothien nimi\"/><br/>\n"
+//                    + "<input type=\"submit\" value=\"Lisää\"/>\n"
+//                    + "</form>";
+//        });
+//        
+//        get("/uusismoothie", (req, res) -> {
+//            return "<form method=\"POST\" action=\"/uusismoothie\">\n"
+//                    + "Smoothien nimi:<br/>\n"
+//                    + "<input type=\"text\" name=\"smoothien nimi\"/><br/>\n"
+//                    + "Järjestys:<br/>\n"
+//                    + "<input type=\"text\" name=\"raaka-aine\"/><br/>\n"
+//                    + "Määrä:<br/>\n"
+//                    + "<input type=\"number\" name=\"maara\"/><br/>\n"
+//                    + "Ohje:<br/>\n"
+//                    + "<input type=\"text\" name=\"ohje\"/><br/>\n"
+//                    + "<input type=\"submit\" value=\"Lisää\"/>\n"
+//                    + "</form>";
+//        });
+//        
+//        post("/uusismoothie", (req, res) -> {
+//            String nimi = req.queryParams("smoothien nimi");
+//            return "Kerrotaan siitä tiedon lähettäjälle: " + nimi;
+//        });
 
     }
 }

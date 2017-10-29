@@ -44,6 +44,18 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
 
         return raakaAine;
     }
+    
+    public void lisaaRaakaAine(String nimi)throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO RaakaAine(nimi) VALUES(?)");
+        stmt.setString(1, nimi);
+        
+        stmt.executeUpdate();
+        
+        stmt.close();
+        connection.close();
+        
+    }
 
     @Override
     public List<RaakaAine> findAll() throws SQLException {
@@ -69,7 +81,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
     @Override
     public void delete(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("DELETE FROM * WHERE id = ?");
+        PreparedStatement stmt = connection.prepareStatement("DELETE FROM RaakaAine WHERE id = ?");
 
         stmt.setInt(1, key);
         stmt.executeUpdate();

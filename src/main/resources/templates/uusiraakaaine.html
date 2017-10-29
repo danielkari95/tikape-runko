@@ -15,7 +15,7 @@ and open the template in the editor.
 
         <ul>
             <li th:each="annos: ${annokset}">
-                <span th:text="${annos.nimi}">smoothien nimi</span>
+                <span th:text="${annos.nimi}">smoothien nimi</span><a th:href="${'/uusiraakaaine/' + annos.id}">(poista)</a>
             </li>
         </ul>
 
@@ -23,7 +23,7 @@ and open the template in the editor.
 
         <form method= "POST" action="/uusiraakaaine">
                 Raaka-aineen nimi:<br/>
-                <input type="text" name="aineennimi"/><br/>
+                <input type="text" name="nimi"/><br/>
                 <input type="submit" value="Lisää"/>
                 </form>
         
