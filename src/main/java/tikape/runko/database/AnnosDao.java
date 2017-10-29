@@ -32,6 +32,22 @@ public class AnnosDao implements Dao<Annos, Integer> {
         connection.close();
         
     }
+    
+    public void lisaaAinekset(int raakaAineId, int annosId, String maara, String ohje)throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO AnnosRaakaAine(raaka_aine_id, annos_id, jarjestys, maara, ohje) VALUES(?, ?, ?, ?, ?)");
+        stmt.setInt(1, raakaAineId);
+        stmt.setInt(2, annosId);
+        stmt.setInt(3, 2);
+        stmt.setString(4, maara);
+        stmt.setString(5, ohje);
+        
+        stmt.executeUpdate();
+        
+        stmt.close();
+        connection.close();
+        
+    }
 
     @Override
     public Annos findOne(Integer key) throws SQLException {
