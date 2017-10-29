@@ -76,6 +76,14 @@ public class AnnosDao implements Dao<Annos, Integer> {
         stmt.executeUpdate();
 
         stmt.close();
+        
+        PreparedStatement stmt1 = connection.prepareStatement("DELETE FROM AnnosRaakaAine WHERE Annos.id = ?");
+        
+        stmt1.setInt(1, key);
+        stmt1.executeUpdate();
+
+        stmt1.close();
+        
         connection.close();
     }
 

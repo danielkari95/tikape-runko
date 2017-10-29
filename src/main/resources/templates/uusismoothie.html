@@ -26,19 +26,34 @@ and open the template in the editor.
         </form>
 
         <p><b>Lisää raaka-aineita</b></p>
-        
-        Smoothien nimi:<br/><select name="smoothienNimi">
-            <option th:each="annos: ${annokset}" th:value="${annos.id}" th:text="${annos.nimi}">
-                smoothiet
-            </option>
-        </select><br/>
-        
-        
-        Lisättävä raaka-aine:<br/><select name="raaka-aineet">
-            <option th:each="raakaaineet: ${raakaaine}" th:value="${raakaaineet.id}" th:text="${raakaaineet.nimi}">
-                raakaaineet
-            </option>
-        </select><br/>
+
+
+
+        <form th:action="@{~/uusismoothie}" method="post">
+            Smoothien nimi:<br/><select name="smoothienNimi">
+                <option th:each="annos: ${annokset}" th:value="${annos.id}" th:text="${annos.nimi}">
+                    smoothiet
+                </option>
+            </select><br/>
+
+
+            Lisättävä raaka-aine:<br/><select name="raaka-aineet">
+                <option th:each="raakaaineet: ${raakaaine}" th:value="${raakaaineet.id}" th:text="${raakaaineet.nimi}">
+                    raakaaineet
+                </option>
+            </select><br/>
+            
+            Järjestys:<br/>
+            <input type="text" name="jarjestus"/><br/>
+            
+            Määrä:<br/>
+            <input type="text" name="maara"/><br/>
+            
+            Ohje:<br/>
+            <input type="text" name="ohje"/><br/>
+            
+            <input type="submit" value="Lisää"/>
+        </form>
 
         <p><a href="/">Smoothielistaukseen</a></p>
     </body>
