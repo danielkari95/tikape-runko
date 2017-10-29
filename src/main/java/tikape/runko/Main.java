@@ -66,6 +66,13 @@ public class Main {
             return new ModelAndView(map, "uusismoothie");
         }, new ThymeleafTemplateEngine());
         
+        Spark.post("/uusismoothie", (req, res) -> {
+            String nimi = req.queryParams("smoothieNimi");
+            annosDao.lisaaSmoothie(nimi);
+            res.redirect("/uusismoothie");
+            return "";
+        });
+        
         
         
 //        get("/uusiraakaaine", (req, res) -> {

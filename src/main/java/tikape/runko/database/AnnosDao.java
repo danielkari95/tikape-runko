@@ -20,6 +20,18 @@ public class AnnosDao implements Dao<Annos, Integer> {
     public AnnosDao(Database database) {
         this.database = database;
     }
+    
+    public void lisaaSmoothie(String nimi)throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Annos(nimi) VALUES(?)");
+        stmt.setString(1, nimi);
+        
+        stmt.executeUpdate();
+        
+        stmt.close();
+        connection.close();
+        
+    }
 
     @Override
     public Annos findOne(Integer key) throws SQLException {
