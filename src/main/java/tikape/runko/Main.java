@@ -57,6 +57,13 @@ public class Main {
             return new ModelAndView(map, "uusiraakaaine");
         }, new ThymeleafTemplateEngine());
         
+        Spark.get("/uusismoothie/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            annosDao.delete(Integer.parseInt(req.params("id")));
+            res.redirect("/uusismoothie");
+            return new ModelAndView(map, "uusiraakaaine");
+        }, new ThymeleafTemplateEngine());
+        
         
         get("/uusismoothie", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -67,8 +74,6 @@ public class Main {
         }, new ThymeleafTemplateEngine());
         
         Spark.post("/uusismoothie", (req, res) -> {
-            String nimi = req.queryParams("smoothieNimi");
-            annosDao.lisaaSmoothie(nimi);
             
             int raakaAineId = Integer.parseInt(req.queryParams("smoothienNimi"));
             int annosId = Integer.parseInt(req.queryParams("raaka-aineet"));
@@ -81,14 +86,9 @@ public class Main {
             return "";
         });
         
-        Spark.post("/uusismoothie", (req, res) -> {
-            
-            int raakaAineId = Integer.parseInt(req.queryParams("smoothienNimi"));
-            int annosId = Integer.parseInt(req.queryParams("raaka-aineet"));
-            String maara = req.queryParams("maara");
-            String ohje = req.queryParams("ohje");
-            
-            annosDao.lisaaAinekset(raakaAineId, annosId, maara, ohje);
+        Spark.post("/uusismoothie/", (req, res) -> {
+            String nimi = req.queryParams("smoothieNimi");
+            annosDao.lisaaSmoothie(nimi);
             
             res.redirect("/uusismoothie");
             return "";

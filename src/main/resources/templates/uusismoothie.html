@@ -14,12 +14,12 @@ and open the template in the editor.
         <h1>Smoothiet</h1>
         <ul>
             <li th:each="annos: ${annokset}">
-                <a th:href="${'/smoothie/' + annos.id}"><span th:text="${annos.nimi}">smoothien nimi</span></a>
+                <a th:href="${'/smoothie/' + annos.id}"><span th:text="${annos.nimi}">smoothien nimi</span></a><a th:href="${'/uusismoothie/' + annos.id}">(poista)</a>
             </li>
         </ul>
         <p><b>Lisää uusi</b></p>
 
-        <form method= "POST" action="/uusismoothie">
+        <form method= "POST" action="/uusismoothie/">
             Smoothien nimi:<br/>
             <input type="text" name="smoothieNimi"/><br/>
             <input type="submit" value="Lisää"/>
@@ -29,7 +29,8 @@ and open the template in the editor.
 
 
 
-        <form th:action="@{~/uusismoothie}" method="post">
+        <form th:action="@{~/uusismoothie}" method="POST">
+            
             Smoothien nimi:<br/><select name="smoothienNimi">
                 <option th:each="annos: ${annokset}" th:value="${annos.id}" th:text="${annos.nimi}">
                     smoothiet
